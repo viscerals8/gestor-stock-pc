@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ esEdicion ? 'Editar celular' : 'Nuevo celular' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+
+    <ion-item>
+      <ion-label position="floating">Código</ion-label>
+      <ion-input formControlName="codigo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Número</ion-label>
+      <ion-input formControlName="numero"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Marca</ion-label>
+      <ion-input formControlName="marca"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Modelo</ion-label>
+      <ion-input formControlName="modelo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select formControlName="estado">
+        <ion-select-option value="Activo">Activo</ion-select-option>
+        <ion-select-option value="Reparación">Reparación</ion-select-option>
+        <ion-select-option value="Baja">Baja</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Usuario asignado</ion-label>
+      <ion-input formControlName="usuario_asignado"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">IMEI</ion-label>
+      <ion-input formControlName="imei"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Código de proyecto</ion-label>
+      <ion-input formControlName="codigo_proyecto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de asignación</ion-label>
+      <ion-input type="date" formControlName="fecha_asignacion"></ion-input>
+    </ion-item>
+
+    <p *ngIf="errorMessage" class="ion-text-center" style="color: var(--ion-color-danger)">{{ errorMessage }}</p>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid || guardando">
+      {{ esEdicion ? 'Guardar cambios' : 'Crear celular' }}
+    </ion-button>
+  </form>
+</ion-content>

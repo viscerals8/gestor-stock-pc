@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Celulares Corporativos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/registro-celular']">
+        + Nuevo
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 🔍 Buscar -->
+  <ion-searchbar
+    placeholder="Buscar por usuario o código de proyecto"
+    [(ngModel)]="busqueda">
+  </ion-searchbar>
+
+  <!-- 🎚 Filtros -->
+  <ion-grid>
+    <ion-row>
+
+      <!-- FILTRO USUARIO -->
+      <ion-col size="6">
+        <ion-item>
+          <ion-select placeholder="Usuario" [(ngModel)]="filtroUsuario">
+            <ion-select-option value="">Todos</ion-select-option>
+            <ion-select-option *ngFor="let c of celulares" [value]="c.usuario_asignado">
+              {{ c.usuario_asignado }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <!-- FILTRO CÓDIGO DE PROYECTO -->
+      <ion-col size="6">
+        <ion-item>
+          <ion-select placeholder="Código Proyecto" [(ngModel)]="filtroCodigoProyecto">
+            <ion-select-option value="">Todos</ion-select-option>
+            <ion-select-option *ngFor="let c of celulares" [value]="c.codigo_proyecto">
+              {{ c.codigo_proyecto }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <p *ngIf="cargando" class="ion-text-center">Cargando...</p>
+  <p *ngIf="!cargando && celularesFiltrados.length === 0" class="ion-text-center">Sin celulares para mostrar.</p>
+
+  <!-- 📱 Cards de celulares -->
+  <ion-card *ngFor="let cel of celularesFiltrados" button [routerLink]="['/detalle-celulares', cel.id]">
+
+    <ion-card-header>
+      <ion-card-title>{{ cel.numero }}</ion-card-title>
+      <ion-card-subtitle>{{ cel.marca }} {{ cel.modelo }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <p><strong>Usuario:</strong> {{ cel.usuario_asignado }}</p>
+      <p><strong>IMEI:</strong> {{ cel.imei }}</p>
+      <p><strong>Estado:</strong> {{ cel.estado }}</p>
+      <p><strong>Código Proyecto:</strong> {{ cel.codigo_proyecto }}</p>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

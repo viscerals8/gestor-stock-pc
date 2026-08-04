@@ -1,0 +1,24 @@
+.reportes-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+
+.reportes-wrapper h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.subtitulo {
+  color: var(--ion-color-medium);
+  margin-bottom: 1.5rem;
+}
+
+.lista-reportes ion-item {
+  --background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: var(--app-shadow);
+  font-weight: 500;
+}

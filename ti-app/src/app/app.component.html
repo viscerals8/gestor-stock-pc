@@ -1,0 +1,41 @@
+<ion-app>
+  <ion-split-pane contentId="main-content" when="false">
+    <ion-menu contentId="main-content" [disabled]="!authService.usuario()">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Gestor Stock PC</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="usuario-actual" *ngIf="authService.usuario() as usuario">
+          <p class="nombre">{{ usuario.nombre }}</p>
+          <ion-note>{{ usuario.rol === 'admin' ? 'Administrador' : 'Técnico' }}</ion-note>
+        </div>
+
+        <ion-list lines="none">
+          <ion-menu-toggle auto-hide="false" *ngFor="let pagina of paginas">
+            <ion-item
+              [routerLink]="[pagina.url]"
+              routerLinkActive="activo"
+              button
+              detail="false">
+              <ion-icon slot="start" [name]="pagina.icono"></ion-icon>
+              <ion-label>{{ pagina.titulo }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list lines="none" class="salir">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button detail="false" (click)="logout()">
+              <ion-icon slot="start" name="log-out-outline"></ion-icon>
+              <ion-label>Cerrar sesión</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Gestión de Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="kanban-container">
+    <div class="kanban-column" *ngFor="let col of columnas">
+      <h3>{{ col }}</h3>
+
+      <div class="tarea-card" *ngFor="let tarea of filtradoPorEstado(col)">
+        <h4>{{ tarea.titulo }}</h4>
+
+        <ion-textarea
+          [(ngModel)]="tarea.observacion"
+          (ionBlur)="guardarObservacion(tarea)"
+          placeholder="Agregar observación">
+        </ion-textarea>
+
+        <input type="file" (change)="onImageneSelected($event, tarea)" />
+        <p *ngIf="tarea.imagen">📎 Imagen: {{ tarea.imagen }}</p>
+
+        <div *ngIf="tarea.estado === 'Preparación'">
+          <h5 class="checklist-title">Checklist Programas</h5>
+
+          <div class="checklist-container">
+            <ion-item *ngFor="let prog of programasDisponibles">
+              <ion-checkbox [(ngModel)]="tarea.programas[prog.key]" (ionChange)="guardarProgramas(tarea)"></ion-checkbox>
+              <ion-label class="check-label">{{ prog.nombre }}</ion-label>
+            </ion-item>
+
+            <ion-item button (click)="toggleOffice(tarea)">
+              <ion-label class="check-label">Office ▶</ion-label>
+            </ion-item>
+            <ng-container *ngIf="tarea.showOfficeVersions">
+              <ion-item class="suboffice" *ngFor="let version of officeVersions">
+                <ion-checkbox [(ngModel)]="tarea.programas[version.key]" (ionChange)="guardarProgramas(tarea)"></ion-checkbox>
+                <ion-label class="check-label">{{ version.nombre }}</ion-label>
+              </ion-item>
+            </ng-container>
+
+            <ion-item button (click)="toggleCytomic(tarea)">
+              <ion-label class="check-label">Cytomic ▶</ion-label>
+            </ion-item>
+            <ng-container *ngIf="tarea.showCytomicVersions">
+              <ion-item class="suboffice" *ngFor="let version of cytomicVersions">
+                <ion-checkbox [(ngModel)]="tarea.programas[version.key]" (ionChange)="guardarProgramas(tarea)"></ion-checkbox>
+                <ion-label class="check-label">{{ version.nombre }}</ion-label>
+              </ion-item>
+            </ng-container>
+          </div>
+        </div>
+
+        <ion-select
+          placeholder="Actualizar estado"
+          (ionChange)="cambiarEstado(tarea.id, $event.detail.value)">
+          <ion-select-option *ngFor="let c of columnas" [value]="c">
+            {{ c }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+</ion-content>

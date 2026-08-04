@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/registro-pc']" fill="solid" color="primary">
+        <ion-icon slot="start" name="add-outline"></ion-icon>
+        Registrar PC
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dashboard-content">
+  <div class="dashboard-wrapper">
+
+    <div class="kpi-grid">
+      <div class="kpi-card" *ngFor="let kpi of kpis">
+        <div class="kpi-icono" [attr.data-color]="kpi.color">
+          <ion-icon [name]="kpi.icono"></ion-icon>
+        </div>
+        <div class="kpi-texto">
+          <p class="kpi-valor">{{ kpi.valor }}</p>
+          <p class="kpi-titulo">{{ kpi.titulo }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>PCs por estado</h2>
+      <div class="chart-wrapper">
+        <canvas baseChart
+                [data]="chartData"
+                [type]="chartType"
+                [options]="{ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }">
+        </canvas>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

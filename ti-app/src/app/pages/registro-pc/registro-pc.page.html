@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Registrar PC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="content-wrapper">
+    <div class="registro-container">
+      <form [formGroup]="registroForm" (ngSubmit)="generarTicket()">
+
+
+        <ion-item>
+          <ion-label position="floating">Numero de Serie</ion-label>
+          <ion-input formControlName="nroSerie"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Marca</ion-label>
+          <ion-input formControlName="marca"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Modelo</ion-label>
+          <ion-input formControlName="modelo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Motivo de ingreso</ion-label>
+          <ion-input formControlName="motivo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            Estado inicial
+          </ion-label>
+          <ion-select formControlName="estado">
+            <ion-select-option value="disponible">Disponible</ion-select-option>
+            <ion-select-option value="asignado">Asignado</ion-select-option>
+            <ion-select-option value="obsoleto">Obsoleto</ion-select-option>
+            <ion-select-option value="en juicio">En juicio</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>Cargar foto</ion-label>
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+        </ion-item>
+
+        <ion-button expand="block" fill="outline" type="button" (click)="tomarFoto()" [disabled]="subiendoFoto">
+          <ion-icon slot="start" name="camera-outline"></ion-icon>
+          Tomar foto con la cámara
+        </ion-button>
+
+        <p *ngIf="subiendoFoto" class="ion-text-center">Subiendo foto...</p>
+        <img *ngIf="fotoPreview" [src]="fotoPreview" class="preview-img" />
+
+        <p *ngIf="errorMessage" class="ion-text-center" style="color: var(--ion-color-danger)">{{ errorMessage }}</p>
+
+        <ion-button expand="block" type="submit" [disabled]="registroForm.invalid || guardando">Generar ticket</ion-button>
+        <ion-button expand="block" fill="clear" color="medium" (click)="limpiar()">Limpiar</ion-button>
+      </form>
+
+      <div *ngIf="qrGenerado" class="qr-container">
+        <p>Código QR generado</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=PC123456" alt="QR Simulado">
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+</ion-content>
+
