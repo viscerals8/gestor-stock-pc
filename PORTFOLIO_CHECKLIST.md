@@ -10,7 +10,6 @@
 - [ ] Migraciones con Alembic (reemplaza `Base.metadata.create_all`)
 - [ ] Capturas de pantalla en el README
 - [ ] Video/demo corto embebido en el README
-- [ ] Deploy público con base de datos separada y datos ficticios (demo real, sin depender de tu SQL Server interno)
 - [ ] LICENSE (MIT)
 - [ ] CI en GitHub Actions (corre los tests en cada push)
 - [ ] De acá en adelante: commits más chicos y frecuentes, en vez de volcados grandes
