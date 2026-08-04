@@ -39,3 +39,16 @@ del frontend Ionic/Angular (`ti-app`).
 
 Roles: `admin` y `tecnico`. Ambos pueden leer/crear/editar los recursos; solo `admin`
 puede eliminar y gestionar usuarios.
+
+## Tests
+
+Los tests corren contra una base SQLite temporal (no tocan el SQL Server real).
+
+```
+pip install -r requirements-dev.txt
+python -m pytest tests/ -v
+```
+
+Cubren autenticación (login válido/inválido, usuario inactivo, `/auth/me`), CRUD de
+PCs (alta, duplicados, edición, permisos de borrado por rol) y permisos de gestión
+de usuarios (solo `admin`).
