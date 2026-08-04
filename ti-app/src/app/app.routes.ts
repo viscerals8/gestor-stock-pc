@@ -43,19 +43,11 @@ export const routes: Routes = [
       import('./pages/historial-pcs/historial-pcs.page').then(m => m.HistorialPcsPage),
   },
   {
-    path: 'pages',
-    canActivate: [authGuard],
-    loadComponent: () =>
-      import('./pages/pages.page').then(m => m.PagesPage),
-  },
-  {
     path: 'admin-reportes',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/admin-reportes/admin-reportes.page').then(m => m.AdminReportesPage),
   },
-
-  // ⭐ LISTADO CELULARES
   {
     path: 'listado-celulares',
     canActivate: [authGuard],
@@ -63,8 +55,6 @@ export const routes: Routes = [
       import('./pages/listado-celulares/listado-celulares.page')
         .then(m => m.ListadoCelularesPage),
   },
-
-  // ⭐ DETALLE CELULAR
   {
     path: 'detalle-celulares/:id',
     canActivate: [authGuard],
@@ -72,8 +62,6 @@ export const routes: Routes = [
       import('./pages/detalle-celulares/detalle-celulares.page')
         .then(m => m.DetalleCelularesPage),
   },
-
-  // ⭐ ALTA / EDICIÓN DE CELULAR
   {
     path: 'registro-celular',
     canActivate: [authGuard],
@@ -88,8 +76,6 @@ export const routes: Routes = [
       import('./pages/formulario-celular/formulario-celular.page')
         .then(m => m.FormularioCelularPage),
   },
-
-  // ⭐ SIEMPRE AL FINAL
   {
     path: '**',
     redirectTo: 'login',
