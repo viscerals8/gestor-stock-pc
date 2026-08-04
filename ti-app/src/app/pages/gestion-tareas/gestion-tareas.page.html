@@ -22,7 +22,7 @@
         </ion-textarea>
 
         <input type="file" (change)="onImageneSelected($event, tarea)" />
-        <p *ngIf="tarea.imagen">📎 Imagen: {{ tarea.imagen }}</p>
+        <p *ngIf="tarea.imagen">Imagen: {{ tarea.imagen }}</p>
 
         <div *ngIf="tarea.estado === 'Preparación'">
           <h5 class="checklist-title">Checklist Programas</h5>

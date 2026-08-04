@@ -54,7 +54,7 @@
   <p *ngIf="cargando" class="ion-text-center">Cargando...</p>
   <p *ngIf="!cargando && celularesFiltrados.length === 0" class="ion-text-center">Sin celulares para mostrar.</p>
 
-  <!-- 📱 Cards de celulares -->
+  <!-- Cards de celulares -->
   <ion-card *ngFor="let cel of celularesFiltrados" button [routerLink]="['/detalle-celulares', cel.id]">
 
     <ion-card-header>
