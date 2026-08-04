@@ -1,0 +1,21 @@
+ion-content {
+  --background: var(--ion-background-color);
+}
+
+ion-item {
+  --background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+ion-label h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+ion-label p {
+  font-size: 0.85rem;
+  color: var(--ion-color-medium);
+  margin: 2px 0;
+}

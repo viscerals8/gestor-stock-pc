@@ -1,0 +1,22 @@
+# Backend (Python)
+backend/.env
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+backend/.venv/
+backend/venv/
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Frontend (Angular/Ionic)
+ti-app/node_modules/
+ti-app/www/
+ti-app/dist/
+ti-app/.angular/
+ti-app/android/
+ti-app/ios/
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

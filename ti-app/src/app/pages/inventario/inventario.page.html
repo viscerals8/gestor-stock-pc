@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Inventario de PCs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Buscar por marca, serie o usuario</ion-label>
+    <ion-input [(ngModel)]="filtroTexto"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Estado</ion-label>
+    <ion-select [(ngModel)]="filtroEstado" interface="popover" placeholder="Todos">
+      <ion-select-option value="">Todos</ion-select-option>
+      <ion-select-option value="disponible">Disponible</ion-select-option>
+      <ion-select-option value="obsoleto">Obsoleto</ion-select-option>
+      <ion-select-option value="asignado">Asignado</ion-select-option>
+      <ion-select-option value="en juicio">En juicio</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <p *ngIf="cargando" class="ion-text-center">Cargando...</p>
+  <p *ngIf="!cargando && filtrados.length === 0" class="ion-text-center">Sin equipos para mostrar.</p>
+
+  <ion-list>
+    <ion-item *ngFor="let pc of filtrados">
+      <ion-label>
+        <h2>{{ pc.marca }} - {{ pc.nro_serie }}</h2>
+        <p>Usuario asignado: {{ pc.usuario_asignado || 'Sin asignar' }}</p>
+        <p>Estado: {{ pc.estado | titlecase }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

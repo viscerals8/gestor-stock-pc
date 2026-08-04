@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detalle del Equipo Celular</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p *ngIf="cargando" class="ion-text-center">Cargando...</p>
+  <p *ngIf="!cargando && !celular" class="ion-text-center">No se encontró el equipo.</p>
+
+  <ion-card *ngIf="celular">
+
+    <!-- ENCABEZADO -->
+    <ion-card-header>
+      <ion-card-title>{{ celular.numero }}</ion-card-title>
+      <ion-card-subtitle>{{ celular.marca }} {{ celular.modelo }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <!-- CONTENIDO -->
+    <ion-card-content>
+
+      <p><strong>IMEI:</strong> {{ celular.imei }}</p>
+
+      <p><strong>Estado:</strong> {{ celular.estado }}</p>
+
+      <p><strong>Ubicación / Código Proyecto:</strong> {{ celular.codigo_proyecto }}</p>
+
+      <p><strong>Usuario Asignado:</strong> {{ celular.usuario_asignado }}</p>
+
+      <p><strong>Fecha Asignación:</strong> {{ celular.fecha_asignacion || 'No registrada' }}</p>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- ACCIONES -->
+  <ion-button *ngIf="celular" expand="block" color="primary" [routerLink]="['/registro-celular', celular.id]">
+    Editar celular
+  </ion-button>
+
+  <ion-button *ngIf="celular && puedeEliminar" expand="block" color="danger" (click)="eliminar()">
+    Eliminar celular
+  </ion-button>
+
+</ion-content>

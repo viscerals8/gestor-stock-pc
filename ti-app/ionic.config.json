@@ -1,0 +1,7 @@
+{
+  "name": "ti-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

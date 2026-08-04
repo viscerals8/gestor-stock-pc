@@ -1,0 +1,66 @@
+ion-content {
+  --background: var(--ion-background-color);
+}
+
+ion-content::part(scroll) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.login-container {
+  background: #ffffff;
+  padding: 36px 28px;
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeIn 0.4s ease;
+}
+
+.logo {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin: 0 auto 4px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+ion-item {
+  --border-radius: 10px;
+  --background: var(--ion-color-light);
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+ion-button {
+  margin-top: 14px;
+}
+
+ion-text p {
+  font-size: 0.82rem;
+  margin: 2px 0 6px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

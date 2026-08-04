@@ -1,0 +1,63 @@
+<!-- historial-pcs.page.html -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Historial de PCs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar
+    [(ngModel)]="filtrosBusqueda"
+    placeholder="Buscar por serie, técnico o estado"
+  ></ion-searchbar>
+
+  <ion-card *ngFor="let intervencion of filtarIntervenciones()">
+    <ion-card-header>
+      <ion-card-title>{{ intervencion.pc_serie }} - {{ intervencion.estado }}</ion-card-title>
+      <ion-card-subtitle>{{ intervencion.fecha | date: 'short' }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Técnico:</strong> {{ intervencion.tecnico_nombre || 'Sin asignar' }}</p>
+      <p>
+        <strong>Observación:</strong> {{ intervencion.observacion | slice: 0:60
+        }}...
+      </p>
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="mostrarDetalle(intervencion)"
+      >
+        {{ intervencionSeleccionada === intervencion
+          ? 'Ocultar detalle'
+          : 'Ver detalle' }}
+      </ion-button>
+
+      <div *ngIf="intervencionSeleccionada === intervencion" class="detalle">
+        <hr />
+        <p><strong>Fecha:</strong> {{ intervencion.fecha | date: 'fullDate' }}</p>
+        <p><strong>Técnico:</strong> {{ intervencion.tecnico_nombre || 'Sin asignar' }}</p>
+        <p><strong>Estado:</strong> {{ intervencion.estado }}</p>
+        <p><strong>Usuarios:</strong> {{ intervencion.usuarios.join(', ') }}</p>
+        <p><strong>Observaciones:</strong> {{ intervencion.observacion }}</p>
+        <p><strong>Acciones:</strong></p>
+        <ul>
+          <li *ngFor="let accion of intervencion.acciones">{{ accion }}</li>
+        </ul>
+
+        <p><strong>Fotos:</strong></p>
+        <div class="imagenes">
+          <img
+            *ngFor="let foto of intervencion.fotos"
+            [src]="foto"
+            alt="Foto intervención"
+          />
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

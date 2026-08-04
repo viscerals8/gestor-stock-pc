@@ -1,0 +1,62 @@
+ion-menu {
+  --width: 260px;
+
+  ion-content {
+    --background: var(--ion-color-light);
+  }
+}
+
+.usuario-actual {
+  padding: 20px 16px 12px;
+
+  .nombre {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ion-text-color);
+  }
+
+  ion-note {
+    font-size: 0.8rem;
+  }
+}
+
+ion-list {
+  padding: 8px;
+  background: transparent;
+}
+
+ion-item {
+  --border-radius: 10px;
+  --padding-start: 12px;
+  margin-bottom: 4px;
+  font-weight: 500;
+
+  ion-icon {
+    color: var(--ion-color-medium);
+  }
+
+  &.activo {
+    --background: var(--ion-color-primary-tint);
+    --color: var(--ion-color-primary);
+    font-weight: 600;
+
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+}
+
+.salir {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+
+  ion-item {
+    --color: var(--ion-color-danger);
+
+    ion-icon {
+      color: var(--ion-color-danger);
+    }
+  }
+}
