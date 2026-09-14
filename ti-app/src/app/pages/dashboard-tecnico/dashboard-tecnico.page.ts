@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -52,6 +52,9 @@ interface Kpi {
   styleUrls: ['./dashboard-tecnico.page.scss']
 })
 export class DashboardTecnicoPage implements OnInit {
+  private pcService = inject(PcService);
+  private tareaService = inject(TareaService);
+
 
   kpis: Kpi[] = [
     { titulo: 'PCs pendientes', valor: 0, icono: 'time-outline', color: 'warning' },
@@ -75,10 +78,7 @@ export class DashboardTecnicoPage implements OnInit {
     ]
   };
 
-  constructor(
-    private pcService: PcService,
-    private tareaService: TareaService,
-  ) {
+  constructor() {
     addIcons({ timeOutline, listOutline, alertCircleOutline, checkmarkDoneOutline, addOutline });
   }
 

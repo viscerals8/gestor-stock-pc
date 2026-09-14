@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {
@@ -31,6 +31,9 @@ interface PaginaMenu {
   ],
 })
 export class AppComponent {
+  authService = inject(AuthService);
+  private router = inject(Router);
+
   paginas: PaginaMenu[] = [
     { titulo: 'Dashboard', url: '/dashboard-tecnico', icono: 'home-outline' },
     { titulo: 'Inventario de PCs', url: '/inventario', icono: 'hardware-chip-outline' },
@@ -41,7 +44,7 @@ export class AppComponent {
     { titulo: 'Reportes', url: '/admin-reportes', icono: 'document-text-outline' },
   ];
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor() {
     addIcons({
       homeOutline, hardwareChipOutline, addCircleOutline, phonePortraitOutline,
       listOutline, timeOutline, documentTextOutline, logOutOutline,

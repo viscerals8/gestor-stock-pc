@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Pc, PcCreate, PcUpdate } from '../models/pc.model';
 
 @Injectable({ providedIn: 'root' })
 export class PcService {
-  private readonly url = `${environment.apiUrl}/pcs`;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly url = `${environment.apiUrl}/pcs`;
 
   listar(filtros?: { texto?: string; estado?: string }): Observable<Pc[]> {
     const params: Record<string, string> = {};

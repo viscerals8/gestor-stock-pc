@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Celular, CelularCreate, CelularUpdate } from '../models/celular.model';
 
 @Injectable({ providedIn: 'root' })
 export class CelularService {
-  private readonly url = `${environment.apiUrl}/celulares`;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly url = `${environment.apiUrl}/celulares`;
 
   listar(filtros?: { texto?: string; usuario_asignado?: string; codigo_proyecto?: string }): Observable<Celular[]> {
     const params: Record<string, string> = {};

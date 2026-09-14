@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -20,14 +20,14 @@ import { filtrarPorTexto } from '../../core/utils/filtro.util';
   ]
 })
 export class ListadoCelularesPage implements OnInit {
+  private celularService = inject(CelularService);
+
 
   busqueda = '';
   filtroUsuario = '';
   filtroCodigoProyecto = '';
   celulares: Celular[] = [];
   cargando = false;
-
-  constructor(private celularService: CelularService) {}
 
   ngOnInit() {
     this.cargar();

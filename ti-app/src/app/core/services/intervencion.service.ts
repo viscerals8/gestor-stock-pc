@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Intervencion, IntervencionCreate } from '../models/intervencion.model';
 
 @Injectable({ providedIn: 'root' })
 export class IntervencionService {
-  private readonly url = `${environment.apiUrl}/intervenciones`;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly url = `${environment.apiUrl}/intervenciones`;
 
   listar(filtros?: { pc_id?: number; texto?: string }): Observable<Intervencion[]> {
     const params: Record<string, string> = {};

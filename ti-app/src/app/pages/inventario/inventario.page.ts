@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -23,12 +23,12 @@ import { filtrarPorTexto } from '../../core/utils/filtro.util';
   ]
 })
 export class InventarioPage implements OnInit {
+  private pcService = inject(PcService);
+
   filtroTexto = '';
   filtroEstado = '';
   pcs: Pc[] = [];
   cargando = false;
-
-  constructor(private pcService: PcService) {}
 
   ngOnInit() {
     this.cargar();
