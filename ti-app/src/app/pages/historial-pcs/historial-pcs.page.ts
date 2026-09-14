@@ -1,6 +1,6 @@
 // historial-pcs.page.ts
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -48,12 +48,12 @@ import { filtrarPorTexto } from '../../core/utils/filtro.util';
   ],
 })
 export class HistorialPcsPage implements OnInit {
+  private intervencionService = inject(IntervencionService);
+
   filtrosBusqueda: string = '';
   intervencionSeleccionada: Intervencion | null = null;
   intervenciones: Intervencion[] = [];
   cargando = false;
-
-  constructor(private intervencionService: IntervencionService) {}
 
   ngOnInit() {
     this.cargar();

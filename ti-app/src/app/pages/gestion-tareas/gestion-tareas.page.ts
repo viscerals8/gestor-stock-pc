@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -21,6 +21,8 @@ import { Tarea } from '../../core/models/tarea.model';
   ]
 })
 export class GestionTareasPage implements OnInit {
+  private tareaService = inject(TareaService);
+
   columnas = ['Recibido', 'Diagnóstico', 'Reparación', 'Preparación', 'Listo'];
 
   programasDisponibles = [
@@ -47,8 +49,6 @@ export class GestionTareasPage implements OnInit {
 
   tareas: Tarea[] = [];
   cargando = false;
-
-  constructor(private tareaService: TareaService) {}
 
   ngOnInit() {
     this.cargar();

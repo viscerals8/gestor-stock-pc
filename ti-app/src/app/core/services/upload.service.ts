@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UploadService {
-  private readonly url = `${environment.apiUrl}/uploads/foto`;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly url = `${environment.apiUrl}/uploads/foto`;
 
   subirFoto(archivo: Blob, nombreArchivo: string): Observable<string> {
     const formData = new FormData();

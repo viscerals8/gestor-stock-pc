@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,18 +23,18 @@ import { CelularService } from '../../core/services/celular.service';
   ]
 })
 export class FormularioCelularPage implements OnInit {
+  private fb = inject(FormBuilder);
+  private celularService = inject(CelularService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private toastCtrl = inject(ToastController);
+
   form: FormGroup;
   celularId: number | null = null;
   guardando = false;
   errorMessage = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private celularService: CelularService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private toastCtrl: ToastController
-  ) {
+  constructor() {
     this.form = this.fb.group({
       codigo: ['', Validators.required],
       numero: [''],

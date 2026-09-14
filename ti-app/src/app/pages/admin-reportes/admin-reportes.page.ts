@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -20,7 +20,9 @@ import { ReporteService } from '../../core/services/reporte.service';
   ]
 })
 export class AdminReportesPage {
-  constructor(private reporteService: ReporteService) {
+  private reporteService = inject(ReporteService);
+
+  constructor() {
     addIcons({ hardwareChipOutline, timeOutline, listOutline, peopleOutline });
   }
 

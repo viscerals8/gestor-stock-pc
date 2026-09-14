@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Token, Usuario } from '../models/usuario.model';
@@ -9,11 +9,11 @@ const USUARIO_KEY = 'auth_usuario';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private http = inject(HttpClient);
+
   private readonly apiUrl = environment.apiUrl;
 
   usuario = signal<Usuario | null>(this.leerUsuarioGuardado());
-
-  constructor(private http: HttpClient) {}
 
   login(correo: string, password: string): Observable<Token> {
     const body = new HttpParams()

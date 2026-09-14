@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { PcService } from './pc.service';
 import { TareaService } from './tarea.service';
@@ -9,13 +9,12 @@ const csvEscape = (valor: unknown) => `"${String(valor ?? '').replace(/"/g, '""'
 
 @Injectable({ providedIn: 'root' })
 export class ReporteService {
-  constructor(
-    private pcService: PcService,
-    private tareaService: TareaService,
-    private intervencionService: IntervencionService,
-    private usuarioService: UsuarioService,
-    private toastCtrl: ToastController,
-  ) {}
+  private pcService = inject(PcService);
+  private tareaService = inject(TareaService);
+  private intervencionService = inject(IntervencionService);
+  private usuarioService = inject(UsuarioService);
+  private toastCtrl = inject(ToastController);
+
 
   descargar(tipo: string) {
     switch (tipo) {

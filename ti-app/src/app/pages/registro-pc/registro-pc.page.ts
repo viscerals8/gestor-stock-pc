@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
@@ -49,6 +49,11 @@ import { cameraOutline, imageOutline } from 'ionicons/icons';
   ]
 })
 export class RegistroPcPage {
+  private fb = inject(FormBuilder);
+  private toastCtrl = inject(ToastController);
+  private pcService = inject(PcService);
+  private uploadService = inject(UploadService);
+
   registroForm: FormGroup;
   fotoPreview: string | null = null;
   qrGenerado = false;
@@ -56,12 +61,7 @@ export class RegistroPcPage {
   subiendoFoto = false;
   errorMessage = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private toastCtrl: ToastController,
-    private pcService: PcService,
-    private uploadService: UploadService,
-  ) {
+  constructor() {
     addIcons({ cameraOutline, imageOutline });
     this.registroForm = this.fb.group({
       nroSerie: ['', Validators.required],

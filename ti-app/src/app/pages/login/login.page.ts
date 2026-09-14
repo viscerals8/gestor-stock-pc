@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicModule, LoadingController } from '@ionic/angular';
@@ -13,16 +13,16 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./login.page.scss']
 })
 export class LoginPage {
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private loadingCtrl = inject(LoadingController);
+  private authService = inject(AuthService);
+
   loginForm: FormGroup;
   errorMessage = '';
   passwordVisible = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private loadingCtrl: LoadingController,
-    private authService: AuthService
-  ) {
+  constructor() {
     this.loginForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]]

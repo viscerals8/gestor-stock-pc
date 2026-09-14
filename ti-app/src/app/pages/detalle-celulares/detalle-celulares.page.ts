@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -45,18 +45,16 @@ import { AuthService } from '../../core/services/auth.service';
   ]
 })
 export class DetalleCelularesPage implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private celularService = inject(CelularService);
+  private authService = inject(AuthService);
+  private alertCtrl = inject(AlertController);
+  private toastCtrl = inject(ToastController);
+
 
   celular: Celular | null = null;
   cargando = false;
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private celularService: CelularService,
-    private authService: AuthService,
-    private alertCtrl: AlertController,
-    private toastCtrl: ToastController,
-  ) {}
 
   get puedeEliminar() {
     return this.authService.tieneRol('admin');
