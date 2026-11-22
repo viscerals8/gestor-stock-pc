@@ -3,7 +3,7 @@
 Sistema de gestión de inventario TI (PCs y celulares corporativos) y seguimiento de
 tareas de soporte técnico, con backend propio y base de datos real.
 
-## El problema
+## Qué problema resuelve
 
 El proyecto arrancó como un prototipo de interfaz sin backend: todos los datos vivían
 hardcodeados en el frontend, se perdían al recargar la página, el login era una
@@ -13,7 +13,7 @@ intervenciones referenciaba equipos con números de serie inventados que no coin
 con los del inventario real, y los reportes y el dashboard mostraban números fijos
 que no reflejaban ningún dato real.
 
-## La solución
+## Cómo se resolvió
 
 Reescritura completa de la capa de datos y seguridad, manteniendo la interfaz Ionic
 original:
@@ -40,14 +40,14 @@ original:
 | Gestión de usuarios desde la interfaz                | 🔶 API lista, falta la pantalla |
 | Detalle de PC con foto e historial del equipo        | ⬜ Pendiente                    |
 
-## Stack
+## Stack técnico
 
 - **Backend**: FastAPI + SQLAlchemy + SQL Server. JWT para autenticación, Pydantic
   para validación.
 - **Frontend**: Ionic + Angular (standalone components) + Capacitor, preparado para
   empaquetarse como app móvil nativa.
 
-## Estructura
+## Estructura del proyecto
 
 ```
 backend/    API REST (FastAPI)
