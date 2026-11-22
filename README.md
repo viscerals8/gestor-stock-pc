@@ -53,27 +53,3 @@ original:
 backend/    API REST (FastAPI)
 ti-app/     Aplicación Ionic/Angular
 ```
-
-## Cómo correrlo
-
-### Backend
-
-Ver [backend/README.md](backend/README.md) para el detalle completo (variables de
-entorno, inicialización de la base de datos, etc.). Resumen:
-
-```
-cd backend
-python -m scripts.init_db     # crea la base y el usuario admin (una sola vez)
-uvicorn app.main:app --reload --port 8000
-```
-
-### Frontend
-
-```
-cd ti-app
-npm install
-npx ng serve
-```
-
-La app queda disponible en `http://localhost:4200` y espera al backend en
-`http://localhost:8000` (configurable en `ti-app/src/environments/`).
